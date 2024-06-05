@@ -2,17 +2,17 @@
 session_start();
 require 'db.php';
 
-// Verificar si el usuario ha iniciado sesión
+
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
 
-// Obtener los productos del catálogo
+
 $stmt = $pdo->query("SELECT * FROM productos");
 $productos = $stmt->fetchAll();
 
-// Manejar la adición de productos al carrito
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['producto_id'])) {
     $producto_id = $_POST['producto_id'];
     $cantidad = isset($_POST['cantidad']) ? (int)$_POST['cantidad'] : 1;

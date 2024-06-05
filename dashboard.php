@@ -5,8 +5,6 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-
-// Aquí podrías obtener más información del usuario si lo deseas
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +24,7 @@ if (!isset($_SESSION['usuario_id'])) {
             <div class="buttons">
                 <a href="catalogo_productos.php" class="button">Mi tienda</a>
                 <a href="crear_usuarios.php" class="button">Crear usuarios</a>
+                <a href="crear_clientes_anonimos.php" class="button">Creació de clients anònims</a>
                 <a href="logout.php" class="button">Cerrar sesión</a>
             </div>
         </main>

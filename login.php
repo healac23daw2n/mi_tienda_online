@@ -12,8 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($usuario && password_verify($contrasena, $usuario['contrasena'])) {
         $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
         $_SESSION['rol'] = $usuario['rol'];
-        header('Location: catalogo_productos.php');
+
+        if ($usuario['rol'] === 'admin') {
+            header('Location: dashboard.php');
+        } else {
+            header('Location: catalogo_productos.php');
+        }
         exit();
     } else {
         $error = "Nombre de usuario o contraseña incorrectos.";
@@ -34,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p style="color: red;"><?= $error ?></p>
     <?php endif; ?>
     <form action="login.php" method="POST">
-        <label for="nombre_usuario">Nombre de Usuario:</label>
-        <input type="text" name="nombre_usuario" required>
+        <label for="nombre_usuario">Nombre de usuario:</label>
+        <input type="text" id="nombre_usuario" name="nombre_usuario" required>
         <br>
         <label for="contrasena">Contraseña:</label>
-        <input type="password" name="contrasena" required>
+        <input type="password" id="contrasena" name="contrasena" required>
         <br>
-        <button type="submit">Login</button>
+        <button type="submit">Log in</button>
     </form>
 </body>
 </html>
